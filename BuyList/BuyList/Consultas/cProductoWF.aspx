@@ -1,5 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="cProductoWF.aspx.cs" Inherits="BuyList.Consultas.cProductoWF" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <style>
+        html {
+            min-height: 100%;
+            position: relative;
+        }
+        body {
+            margin: 0;
+            margin-bottom: 40px;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 120px;
+        }
+
+     .redondeado {
+       border-radius: 15px;
+     }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>

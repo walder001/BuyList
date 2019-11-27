@@ -12,7 +12,7 @@
         </ul>
         <br />
         <div class="form-row">
-            <div class="col">
+            <div class="col col-4 offset-8">
                 <label for="Fecha"><strong>Fecha</strong></label>
                 <asp:TextBox ID="FechaTextBox" CssClass="form-control" TextMode="Date" runat="server"/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" MaxLength="200"
@@ -23,8 +23,18 @@
                 </asp:RequiredFieldValidator>
            </div>
         </div>
-        
+
         <div class="form-row">
+            <div class="col">
+                <label for="ClienteId"><strong>Codigo</strong></label>
+                <div class="form-row">
+                <asp:TextBox ID="ClienteIdTextBox" runat="server" Text="0" TextMode="Search" CssClass="form-control col col-9" onKeyPress="return soloNumeros(event)" />
+                <asp:LinkButton ID="Buscar" runat="server" CssClass="col col-2 offset-1 " OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
+                </div>
+             </div>
+        </div>
+        
+<%--        <div class="form-row">
             <div class="col-2 col-lg-1 offset-2">
                 <label for="UsiarioId"><strong>Codigo</strong></label>
             </div>
@@ -34,7 +44,7 @@
             <div class="col-2 col-lg-3">
                 <asp:LinkButton ID="Buscar" runat="server" CssClass="col-md-4 offset-0 " OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
             </div>  
-        </div>
+        </div>--%>
 
          <div class="form-row">
             <div class="col">
@@ -67,7 +77,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="Cantidad"><strong>Cantidad Articulos</strong></label>
-                <asp:TextBox ID="CantidadTextBox" CssClass="form-control" placeholder="Usuario" ReadOnly="true" runat="server" onKeyPress="return NumCheck(event,this)"/>
+                <asp:TextBox ID="CantidadTextBox" CssClass="form-control" Text="0" ReadOnly="true" runat="server" onKeyPress="return NumCheck(event,this)"/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" MaxLength="200"
                     ControlToValidate="CantidadTextBox"
                     ErrorMessage="Campo Cantidad obligatorio" ForeColor="black"

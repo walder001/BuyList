@@ -240,6 +240,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/Registros/rProductoWF.aspx">Productos</a>
                             <a class="dropdown-item" href="/Registros/rCategoriaWF.aspx">Categoria</a>
+                            <a class="dropdown-item" href="/Registros/rClienteWF.aspx">Cliente</a>
                             <a class="dropdown-item" href="/Registros/Lista.aspx">Lista</a>
                             <a class="dropdown-item" href="/Registros/CheckList.aspx">Check List</a>
 
@@ -250,8 +251,8 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/Consultas/cProductoWF.aspx">Productos</a>
                             <a class="dropdown-item" href="/Consultas/cCategoriaWF.aspx">Categoria</a>
+                            <a class="dropdown-item" href="/Consultas/cClienteWF.aspx">Cliente</a>
                             <a class="dropdown-item" href="/Consultas/cListaWF.aspx">Lista</a>
-
                         </div>
                     </li>
                 </ul>
@@ -278,18 +279,17 @@
                             aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-right dropdown-default"
                             aria-labelledby="navbarDropdownMenuLink-333">
-                            <a class="dropdown-item" href="/Registros/Login.aspx">Login</a>
+                            <a class="dropdown-item" href="">Login</a>
                         </div>
                     </li>
                 </ul>
             </div>
         </nav>
+
         <!--/.Navbar -->
-
-
-
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

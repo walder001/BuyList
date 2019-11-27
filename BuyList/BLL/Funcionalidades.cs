@@ -11,7 +11,7 @@ namespace BLL
 {
     public class Funcionalidades
     {
-        public static List<Clientes> FiltrarClientes(int index, string criterio, DateTime desde, DateTime hasta)
+        public static List<Clientes> Filtrar(int index, string criterio, DateTime desde, DateTime hasta)
         {
             Expression<Func<Clientes, bool>> filtro = p => true;
             RepositorioBase<Clientes> repositorio = new RepositorioBase<Clientes>(new Contexto());
@@ -140,34 +140,50 @@ namespace BLL
             listas = repositorio.GetList(filtro);
             return listas;
         }
-        
 
-  
-        public static List<Categorias> FReporteCategoria()
+
+        public static List<Clientes> FitrarCliente(int index, string criterio)
         {
-            List<Categorias> lista = new List<Categorias>();
-            Expression<Func<Categorias, bool>> filtro = f => true;
-            RepositorioBase<Categorias> repositorio = new RepositorioBase<Categorias>(new Contexto());
+            List<Clientes> lista = new List<Clientes>();
+            Expression<Func<Clientes, bool>> filtro = f => true;
+            RepositorioBase<Clientes> repositorio = new RepositorioBase<Clientes>(new Contexto());
+            int id = ToInt(criterio);
+            switch (index)
+            {
+                //Todo
+                case 0:
+                    break;
+
+                //Id
+                case 1:
+                    filtro = f => f.ClienteId == id;
+
+                    break;
+
+                //Nombre
+                case 2:
+                    filtro = f => f.Nombre.Contains(criterio);
+                    break;
+                case 3:
+                    break;
+
+                //Email
+                case 4:
+                    filtro = f => f.Email.Contains(criterio);
+
+                    break;
+
+                //Cantidad
+                case 5:
+                    filtro = f => f.CantidaArticulo == id;
+                    break;
+
+            }
             lista = repositorio.GetList(filtro);
+
             return lista;
         }
 
-        public static List<Productos> FReporteProducto()
-        {
-            List<Productos> lista = new List<Productos>();
-            Expression<Func<Productos, bool>> filtro = f => true;
-            RepositorioBase<Productos> repositorio = new RepositorioBase<Productos>(new Contexto());
-            lista = repositorio.GetList(filtro);
-            return lista;
-        }
-
-        public static List<Listas> FReporteLista()
-        {
-            List<Listas> lista = new List<Listas>();
-            Expression<Func<Listas, bool>> filtro = f => true;
-            RepositorioBase<Listas> repositorio = new RepositorioBase<Listas>(new Contexto());
-            lista = repositorio.GetList(filtro);
-            return lista;
-        }
+      
     }
 }

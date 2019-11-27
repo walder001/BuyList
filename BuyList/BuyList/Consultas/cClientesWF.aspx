@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="cCategoriaWF.aspx.cs" Inherits="BuyList.Consultas.cCategoriaWF" %>
-    <style>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="cClientesWF.aspx.cs" Inherits="BuyList.Consultas.cClientesWF" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <style>
         html {
             min-height: 100%;
             position: relative;
@@ -20,10 +21,9 @@
      }
 
     </style>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+      <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
     <div class="container">
         <ul class="nav justify-content-center bg-success">
             <li>
@@ -40,6 +40,8 @@
                 <asp:ListItem Text="Todo" />
                 <asp:ListItem Text="Id" />
                 <asp:ListItem Text="Nombre" />
+                <asp:ListItem Text="Email" />
+                <asp:ListItem Text="Cantidad" />
 
             </asp:DropDownList>
             <label class="col"><strong>Contenido </strong></label>
@@ -51,13 +53,13 @@
     </div>
 
     <div class="table-responsive container">
-        <asp:GridView ID="CategoriaGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="ClienteGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:HyperLinkField ControlStyle-ForeColor="#0094ff"
                     HeaderText="Opciones"
-                    DataNavigateUrlFields="CategoriaId"
-                    DataNavigateUrlFormatString="/Registros/rCategoriaWF.aspx?Id={0}"
+                    DataNavigateUrlFields="ClienteId"
+                    DataNavigateUrlFormatString="/Registros/rClienteWF.aspx?Id={0}"
                     Text="Editar"></asp:HyperLinkField>
             </Columns>
             <HeaderStyle BackColor="Green" Font-Bold="true" ForeColor="black" />
@@ -76,7 +78,7 @@
             <div class="modal-dialog modal-sm" style="max-width: 600px!important; min-width: 300px!important">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">REPORTE CATEGORIA</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">REPORTE CLIENTES</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

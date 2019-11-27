@@ -51,6 +51,8 @@ namespace BuyList.Registros
         protected void Limpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
+            Utils.ShowToastr(this, "Limpieza Exitosa!!", "Exito");
+
         }
         protected void Guardar_Click(object sender, EventArgs e)
         {
@@ -67,15 +69,29 @@ namespace BuyList.Registros
             }
             else
             {
-                paso = repositorio.Modificar(LLenaClase());
+                RepositorioBase<Clientes> repositorio1 = new RepositorioBase<Clientes>(new Contexto());
+                var buscar = repositorio1.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
+                if (buscar != null)
+                {
+                    paso = repositorio.Modificar(LLenaClase());
+                    Utils.ShowToastr(this, "Modificacion Exitosa!!", "Exito", "success");
+                }
+                else
+                {
+                    Utils.ShowToastr(this, "Modificacion Erronea!!", "Error", "error");
+
+                }
 
             }
             if (paso)
             {
                 Limpiar();
+                Utils.ShowToastr(this, "Guardado Exitosa!!", "Exito", "success");
+
             }
             else
             {
+                Utils.ShowToastr(this, "Error as Guardar!!", "Error", "error");
 
             }
 
@@ -88,10 +104,12 @@ namespace BuyList.Registros
             RepositorioBase<Clientes> repositorio = new RepositorioBase<Clientes>(new Contexto());
             if (repositorio.Eliminar(Utils.ToInt(ClienteIdTextBox.Text)))
             {
+                Utils.ShowToastr(this, "Eliminacion Exitosa!!", "Exito", "success");
 
             }
             else
             {
+                Utils.ShowToastr(this, "No se pudo eliminar!!", "Error", "error");
 
             }
 
@@ -102,11 +120,16 @@ namespace BuyList.Registros
             var buscar = repositorio.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
             if (buscar != null)
             {
+                Limpiar();
                 LLenaCampo(buscar);
+                Utils.ShowToastr(this, "Busqueda Exitosa!!", "Exito", "success");
+
 
             }
             else
             {
+                Utils.ShowToastr(this, "Error al modificar!!", "Error", "error");
+
 
             }
 

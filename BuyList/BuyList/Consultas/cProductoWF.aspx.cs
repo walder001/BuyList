@@ -30,7 +30,7 @@ namespace BuyList.Consultas
             MyReportViewer.Reset();
             MyReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ReporteProducto.rdlc");
             MyReportViewer.LocalReport.DataSources.Clear();
-            MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Producto", Funcionalidades.FReporteProducto()));
+            //MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Producto", Funcionalidades.FReporteProducto()));
             MyReportViewer.LocalReport.Refresh();
 
         }
