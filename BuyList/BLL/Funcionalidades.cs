@@ -129,6 +129,8 @@ namespace BLL
             switch (index)
             {
                 case 0:
+                    filtro = a => a.ListaId == id;
+
                     break;
                 case 1:
                     filtro = a => a.ListaId == id;

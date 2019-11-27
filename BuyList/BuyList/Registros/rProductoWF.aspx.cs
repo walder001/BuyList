@@ -54,24 +54,47 @@ namespace BuyList.Registros
             GananciaTextBox.Text = productos.Ganancia.ToString();
         }
 
-        public bool Validar()
+        protected bool Validar()
         {
-            bool paso = false;
+            bool paso = true;
+            RepositorioBase<Productos> repositorio = new RepositorioBase<Productos>(new Contexto());
+            Contexto contexto = new Contexto();
+
+            var buscar = contexto.Productos.FirstOrDefault(p => p.Descripcion == DescripcionTextBox.Text);
+            if (buscar != null)
+            {
+                Utils.ShowToastr(this, "El producto ya existe", "Error", "error");
+                paso = false;
+
+            }
+
+
             return paso;
         }
 
         protected void Buscar_Click(object sender, EventArgs e)
         {
-            RepositorioBase<Productos> repositorio = new RepositorioBase<Productos>(new Contexto());
-
-            var buscar = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
-            if (buscar != null)
+            if (ProductoIdTextBox.Text != "")
             {
-                LLenaCampo(buscar);
+                RepositorioBase<Productos> repositorio = new RepositorioBase<Productos>(new Contexto());
+                RepositorioBase<Categorias> categoria = new RepositorioBase<Categorias>(new Contexto());
+                var buscar = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
+                if (buscar != null)
+                {
+                    LLenaCampo(buscar);
+                    Utils.ShowToastr(this, "Busqueda Exitosa!!", "Exito", "success");
+                }
+                else
+                {
+                    Utils.ShowToastr(this, "Error al Buscar!!", "Error", "error");
+
+                }
 
             }
             else
             {
+                Utils.ShowToastr(this, "Error al Buscar!!", "Error", "error");
+
 
             }
         }
@@ -88,7 +111,7 @@ namespace BuyList.Registros
             RepositorioBase<Productos> repositorio = new RepositorioBase<Productos>(new Contexto());
             Productos productos = new Productos();
             bool paso = false;
-            if (Validar())
+            if (!Validar())
                 return;
             productos = LLenaClase();
             if (Utils.ToInt(ProductoIdTextBox.Text) == 0)
@@ -97,16 +120,29 @@ namespace BuyList.Registros
             }
             else
             {
-             
+                RepositorioBase<Productos> repositorio1 = new RepositorioBase<Productos>(new Contexto());
+                var buscar = repositorio1.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
+                if (buscar != null)
+                {
                     paso = repositorio.Modificar(productos);
-               
+                    Utils.ShowToastr(this, "Modificacion Exitosa!!","Exito","success");
+                }
+                else
+                {
+                    Utils.ShowToastr(this, "Modificacion Erronea!!", "Error", "error");
+
+                }
+
             }
             if (paso)
             {
                 Limpia();
+                Utils.ShowToastr(this, "Guardo Exitosamente!!", "Exito", "success");
+
             }
             else
             {
+                Utils.ShowToastr(this, "Error al guardar", "Error", "error");
 
             }
 
@@ -118,10 +154,12 @@ namespace BuyList.Registros
 
             if (repositorio.Eliminar((Utils.ToInt(ProductoIdTextBox.Text))))
             {
-               
+                Utils.ShowToastr(this, "Eliminacoin Exitosa!!", "Exito", "success");
+
             }
             else
             {
+                Utils.ShowToastr(this, "Error al eliminar!!", "Error", "error");
 
             }
 

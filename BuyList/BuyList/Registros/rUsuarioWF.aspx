@@ -12,7 +12,7 @@
         </ul>
         <br />
         <div class="form-row">
-            <div class="col">
+            <div class="col col-4 offset-8">
                 <label for="Fecha"><strong>Fecha</strong></label>
                 <asp:TextBox ID="FechaTextBox" CssClass="form-control" TextMode="Date" runat="server"/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" MaxLength="200"
@@ -25,15 +25,14 @@
         </div>
         
         <div class="form-row">
-            <div class="col-2 col-lg-1 offset-2">
+            <div class="col">
                 <label for="UsiarioId"><strong>Codigo</strong></label>
-            </div>
-            <div class="col-6 col-lg-5">
-                <asp:TextBox ID="UsuarioIdIdTextBox" runat="server" Text="0" TextMode="Search" CssClass="col-sm-12 col-md-12 form-control" onKeyPress="return soloNumeros(event)" />
-            </div>
-            <div class="col-2 col-lg-3">
-                <asp:LinkButton ID="Buscar" runat="server" CssClass="col-md-4 offset-0 " OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
-            </div>  
+                <div class="form-row">
+                <asp:TextBox ID="UsuarioIdIdTextBox" runat="server" Text="0" TextMode="Search" CssClass="form-control col col-9" onKeyPress="return soloNumeros(event)" />
+                <asp:LinkButton ID="Buscar" runat="server" CssClass="col col-2 offset-1 " OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
+                </div>
+    
+             </div>
         </div>
 
          <div class="form-row">
@@ -95,7 +94,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="Clave"><strong>Clave</strong></label>
-                <asp:TextBox ID="ClaveTextBox" CssClass="form-control" placeholder="Usuario" TextMode="Password" runat="server"/>
+                <asp:TextBox ID="ClaveTextBox" CssClass="form-control" runat="server"/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" MaxLength="200"
                     ControlToValidate="ClaveTextBox"
                     ErrorMessage="Campo Clave obligatorio" ForeColor="black"
@@ -108,7 +107,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="ConfirmarClave"><strong>Confirmar</strong></label>
-                <asp:TextBox ID="ConfirmarClaveTextBox" CssClass="form-control" placeholder="Usuario" TextMode="Password" runat="server" OnClick="comprobarClave()"/>
+                <asp:TextBox ID="ConfirmarClaveTextBox" CssClass="form-control" runat="server" OnClick="comprobarClave()"/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" MaxLength="200"
                     ControlToValidate="ClaveTextBox"
                     ErrorMessage="Campo Clave obligatorio" ForeColor="black"
@@ -125,5 +124,4 @@
             <asp:LinkButton ID="Elimina" runat="server" CssClass="btn btn-danger col-sm-2 " OnClick="Eliminar_Click"><i class="fas fa-trash-alt"></i>  Eliminar</asp:LinkButton>
         </div>       
     </div>
-
 </asp:Content>

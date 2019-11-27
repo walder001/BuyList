@@ -177,6 +177,7 @@ namespace BuyList.Registros
         protected void Limpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
+            Utils.ShowToastr(this, "Limpieza Exitosa!!", "Exito");
 
         }
 
@@ -198,21 +199,25 @@ namespace BuyList.Registros
                 if (repositorio.Buscar(Utils.ToInt(ListaIdTextBox.Text)) != null)
                 {
                     paso = repositorio.Modificar(lista);
+                    Utils.ShowToastr(this, "Modificacion Exitosa!!", "Exito", "success");
+
                 }
                 else
                 {
+                    Utils.ShowToastr(this, "Error al modificar!!", "Error", "error");
+
                 }
             }
             if (paso)
             {
                 Limpiar();
+                Utils.ShowToastr(this, "Guardar Exitosa!!", "Exito", "success");
             }
             else
             {
+                Utils.ShowToastr(this, "Error al Guardar!!", "Error", "error");
 
             }
-
-
 
         }
         protected void Buscar_Click(object sender, EventArgs e)
@@ -222,11 +227,14 @@ namespace BuyList.Registros
             var buscar = repositorio.Buscar(Utils.ToInt(ListaIdTextBox.Text));
             if (buscar != null)
             {
+                Limpiar();
                 LLenaCampo(buscar);
-                this.BindGrid();
+                Utils.ShowToastr(this, "Busqueda Exitosa!!", "Exito", "success");
+
             }
             else
             {
+                Utils.ShowToastr(this, "No encostrado!!", "Error", "error");
 
             }
 
@@ -238,16 +246,40 @@ namespace BuyList.Registros
 
             if (repositorio.Eliminar(Utils.ToInt(ListaIdTextBox.Text)))
             {
+                Utils.ShowToastr(this, "Eliminacion Exitosa!!", "Exito", "success");
 
             }
             else
             {
+                Utils.ShowToastr(this, "Erro al eliminar!!", "Error", "error");
 
             }
         }
 
         protected void Grid_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            //decimal total = 0, resta = 0;
+            //total = Utils.ToDecimal(TotalTextBox.Text);
+            //Evaluaciones evaluaciones = new Evaluaciones();
+            //evaluaciones = (Evaluaciones)ViewState["Evaluaciones"];
+            //ViewState["Detalle"] = evaluaciones.Detalles;
+            //int Fila = e.RowIndex;
+            //evaluaciones.Detalles.RemoveAt(Fila);
+            //this.BindGrid();
+            //RepositorioBase<DetalleEvaluaciones> repositorio = new RepositorioBase<DetalleEvaluaciones>(new Contexto());
+            //int evaluar = Utils.ToInt(EvaluacionTextBox.Text);
+            //var op = repositorio.GetList(x => x.EvaluacionId == evaluar);
+            //List<DetalleEvaluaciones> lista = repositorio.GetList(a => a.EvaluacionId == evaluar);
+            //lista = op;
+
+            //foreach (var item in evaluaciones.Detalles)
+            //{
+            //    resta += item.Perdido;
+            //}
+
+            //decimal p, pro = Utils.ToInt(TotalTextBox.Text);
+            //p = resta - pro;
+            //TotalTextBox.Text = p.ToString();
 
 
         }

@@ -15,6 +15,12 @@ namespace BuyList.Registros
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            if (!Page.IsPostBack)
+            {
+
+            }
+            
 
         }
 
@@ -23,14 +29,14 @@ namespace BuyList.Registros
             UsuarioTextBox.Text = "0";
             NombreTextBox.Text = string.Empty;
             EmailTextBox.Text = string.Empty;
-           // Nivel.Text = null;
+            NivelUsiario.SelectedValue = null;
             UsuarioTextBox.Text = string.Empty;
             ClaveTextBox.Text = string.Empty;
             ConfirmarClaveTextBox.Text = string.Empty;
-            FechaTextBox.Text = DateTime.Now.ToString("dd-MM-yyy");
+            FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
-      
+
 
         //UsuarioId, Nombres, Email, NivelUsuario, Usuario, Clave, FechaIngreso
 
@@ -40,9 +46,9 @@ namespace BuyList.Registros
             us.UsuarioId = Utils.ToInt(UsuarioTextBox.Text);
             us.Nombres = NombreTextBox.Text.TrimStart();
             us.Email = EmailTextBox.Text.TrimStart();
-           us.NivelUsuario = Utils.ToInt(NivelUsiario.SelectedValue);
+            us.NivelUsuario = Utils.ToInt(NivelUsiario.SelectedValue);
             us.Usuario = UsuarioTextBox.Text.TrimStart();
-           us.Clave = EnCryptDecrypt.CryptorEngine.Encrypt(ClaveTextBox.Text, true);
+            us.Clave = EnCryptDecrypt.CryptorEngine.Encrypt(ClaveTextBox.Text, true);
             us.FehaIngreso = Utils.ToDateTime(FechaTextBox.Text);
             return us;
         }
@@ -54,18 +60,19 @@ namespace BuyList.Registros
             EmailTextBox.Text = usuarios.Email;
             NivelUsiario.SelectedValue = usuarios.NivelUsuario.ToString();
             UsuarioTextBox.Text = usuarios.Usuario;
-            ClaveTextBox.Text = EnCryptDecrypt.CryptorEngine.Decrypt(usuarios.Clave, true);
-            ConfirmarClaveTextBox.Text = EnCryptDecrypt.CryptorEngine.Decrypt(usuarios.Clave, true); ;
-            FechaTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            ClaveTextBox.Text = EnCryptDecrypt.CryptorEngine.Decrypt(usuarios.Clave, true).ToString();
+            ConfirmarClaveTextBox.Text = EnCryptDecrypt.CryptorEngine.Decrypt(usuarios.Clave, true).ToString();
+            FechaTextBox.Text = usuarios.FehaIngreso.ToString("yyyy-MM-dd");
         }
 
         public bool Validar()
         {
-            bool paso = false;
+            bool paso = true;
             if (ClaveTextBox.Text != ConfirmarClaveTextBox.Text)
             {
+                Utils.ShowToastr(this, "Clave diferentes", "Error","error");
                 ClaveTextBox.Focus();
-                paso = true;
+                paso = false;
             }
             return paso;
         }
@@ -73,14 +80,16 @@ namespace BuyList.Registros
         {
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>(new Contexto());
             var buscar = repositorio.Buscar(Utils.ToInt(UsuarioIdIdTextBox.Text));
+
             if (buscar != null)
             {
+                Utils.ShowToastr(this, "Busqueda Existosa!!", "Exito", "success");
+                Limpiar();
                 LLenaCampo(buscar);
-
             }
             else
             {
-
+                Utils.ShowToastr(this, "No Hay Resultado", "Error", "error");
             }
 
 
@@ -97,7 +106,7 @@ namespace BuyList.Registros
             Usuarios usuarios = new Usuarios();
             bool paso = false;
 
-            if (Validar())
+            if (!Validar())
                 return;
             usuarios = LLenaClase();
             if (Utils.ToInt(UsuarioIdIdTextBox.Text) == 0)
@@ -106,15 +115,31 @@ namespace BuyList.Registros
             }
             else
             {
-                paso = repositorio.Modificar(LLenaClase());
+                paso = repositorio.Modificar(usuarios);
+                Limpiar();
+                //RepositorioBase<Usuarios> repositorio1 = new RepositorioBase<Usuarios>(new Contexto());
+                //int id = Utils.ToInt(UsuarioTextBox.Text);
+                //var buscar = repositorio1.Buscar(id);
+                //if (buscar != null)
+                //{
+                //    Utils.ShowToastr(this, "Modificacion Exitosa!!","Exito","success");
+                //    paso = repositorio.Modificar(LLenaClase());
+                //}
+                //else
+                //{
+                //    Utils.ShowToastr(this, "Modificacion Erronea!!", "Error", "error");
+                //}
+
 
             }
             if (paso)
             {
-                Limpiar();
+                Utils.ShowToastr(this, "Guardo Exitosamente!!", "Exito", "success");
+                Limpiar();   
             }
             else
             {
+                Utils.ShowToastr(this, "No guardo", "Erro", "error");
 
             }
 

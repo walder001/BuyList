@@ -10,7 +10,7 @@
     </asp:ContentPlaceHolder>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -126,6 +126,7 @@
         }
 
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <%--Librerias para el toast--%>
     <link href="./Media/css/Grey/ListBox.Grey.css" rel="stylesheet" type="text/css" />

@@ -17,13 +17,15 @@ namespace BuyList.Consultas
         {
             if (!Page.IsPostBack)
             {
-                LlenaReport();
+                int id = Utils.ToInt(TextBoxCriterio.Text);
+                int index = ToInt(DropDromFiltro.SelectedIndex);
+                LlenaReport(index, TextBoxCriterio.Text);
 
 
             }
         }
 
-        public void LlenaReport()
+        public void LlenaReport(int index, string criteio)
         {
             RepositorioBase<Listas> repositorio = new RepositorioBase<Listas>(new Contexto());
 
@@ -31,7 +33,7 @@ namespace BuyList.Consultas
             MyReportViewer.Reset();
             MyReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ReporteLista.rdlc");
             MyReportViewer.LocalReport.DataSources.Clear();
-            MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Lista", Funcionalidades.FReporteLista()));
+            MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Lista", Funcionalidades.FiltrarLista(index,criteio)));
             MyReportViewer.LocalReport.Refresh();
 
         }
@@ -48,6 +50,16 @@ namespace BuyList.Consultas
             int index = ToInt(DropDromFiltro.SelectedIndex);
             ListaGridView.DataSource = Funcionalidades.FiltrarLista(index,TextBoxCriterio.Text);
             ListaGridView.DataBind();
+            LlenaReport(index, TextBoxCriterio.Text);
+
+
+        }
+
+        protected void Imprimir_Click(object sender, EventArgs e)
+        {
+            int id = Utils.ToInt(TextBoxCriterio.Text);
+            int index = ToInt(DropDromFiltro.SelectedIndex);
+            LlenaReport(index, TextBoxCriterio.Text);
         }
     }
 }

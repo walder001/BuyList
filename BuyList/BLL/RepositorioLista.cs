@@ -61,6 +61,21 @@ namespace BLL
 
             return paso;
         }
+        public override bool Eliminar(int id)
+        {
+            bool paso = false;
+            RepositorioLista repositorio = new RepositorioLista(new Contexto());
+            Listas evaluaciones = _contexto.Listas.Find(id);
+            foreach (var item in evaluaciones.DetalleListas)
+            {
+                //_contexto.Clientes.Find(item.EsudianteId).PuntosPerdidos -= item.Perdido;
+            }
+            _contexto.Listas.Remove(evaluaciones);
+
+            paso = _contexto.SaveChanges() > 0;
+
+            return paso;
+        }
 
         public override bool Modificar(Listas lista)
         {

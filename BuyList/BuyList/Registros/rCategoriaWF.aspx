@@ -39,6 +39,18 @@
         </ul>
         <br />
         <div class="form-row">
+            <div class="col">
+                <label for="CategoriaId"><strong>Codigo</strong></label>
+                <div class="form-row">
+                <asp:TextBox ID="CategoriaIdTextBox" runat="server" Text="0" TextMode="Search" CssClass="form-control col col-9" onKeyPress="return soloNumeros(event)" />
+                <asp:LinkButton ID="Buscar" runat="server" CssClass="col col-2 offset-1 " OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
+                </div>
+    
+             </div>
+        </div>
+ 
+<%--        <div class="form-row">
+            
             <div class="col-2 col-lg-1 offset-2">
                 <label for="CategoriaId"><strong>Codigo</strong></label>
             </div>
@@ -48,7 +60,7 @@
             <div class="col-2 col-lg-3">
                 <asp:LinkButton ID="Buscar" runat="server" CssClass="col-md-4 offset-0 " OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
             </div>  
-        </div>
+        </div>--%>
 
          <div class="form-row">
             <div class="col">
