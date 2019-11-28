@@ -82,7 +82,7 @@ namespace BLL
 
             return lista;
         }
-        public static List<Productos> FiltrarProducto(int index, string criterio, DateTime desde, DateTime hasta)
+        public static List<Productos> FiltrarProducto(int index, string criterio)
         {
             List<Productos> lista = new List<Productos>();
             Expression<Func<Productos, bool>> filtro = f => true;
@@ -129,8 +129,6 @@ namespace BLL
             switch (index)
             {
                 case 0:
-                    filtro = a => a.ListaId == id;
-
                     break;
                 case 1:
                     filtro = a => a.ListaId == id;

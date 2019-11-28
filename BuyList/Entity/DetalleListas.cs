@@ -12,6 +12,8 @@ namespace Entity
     {
         [Key]
         public int DetalleListaId { get; set; }
+        public int ListaId { get; set; }
+        public int ClienteId { get; set; }
         public string Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
@@ -20,6 +22,8 @@ namespace Entity
         public DetalleListas()
         {
             DetalleListaId = 0;
+            ListaId = 0;
+            ClienteId = 0;
             Producto = string.Empty;
             Cantidad = 0;
             Precio = 0;
@@ -28,9 +32,11 @@ namespace Entity
 
         }
 
-        public DetalleListas(int detalleListaId, string producto, int cantidad, decimal precio, decimal importe, decimal itebis)
+        public DetalleListas(int detalleListaId, int listaId,int clienteId, string producto, int cantidad, decimal precio, decimal importe, decimal itebis)
         {
             DetalleListaId = detalleListaId;
+            ListaId = listaId;
+            ClienteId = clienteId;
             Producto = producto;
             Cantidad = cantidad;
             Precio = precio;

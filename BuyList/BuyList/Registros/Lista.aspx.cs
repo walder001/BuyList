@@ -28,7 +28,8 @@ namespace BuyList.Registros
         public void Limpiar()
         {
             ListaIdTextBox.Text = "0";
-            ClienteTextBox.Text = string.Empty;
+            ClienteDropList.SelectedValue = null;
+            NombreListaTextBox.Text = string.Empty;
             CategoriaDropDownList.SelectedValue = null;
             ProductoDropDownList.SelectedValue = null;
             CantidadTextBox.Text = string.Empty;
@@ -48,6 +49,8 @@ namespace BuyList.Registros
             Listas listas = new Listas();
             listas = (Listas)ViewState["Listas"];
             listas.ListaId = Utils.ToInt(ListaIdTextBox.Text);
+            listas.ClienteId = Utils.ToInt(ClienteDropList.SelectedValue);
+            listas.NombreLista = NombreListaTextBox.Text;
             listas.CantidadTotal = Utils.ToInt(CantidadTotalTextBox.Text);
             listas.SubTotalLista = Utils.ToDecimal(SubTotalTextBox.Text);
             listas.ItebisTotalLista = Utils.ToDecimal(ItebisTotalTextBox.Text);
@@ -61,6 +64,8 @@ namespace BuyList.Registros
             Limpiar();
             ((Listas)ViewState["Listas"]).DetalleListas = listas.DetalleListas;
             ListaIdTextBox.Text = listas.ListaId.ToString();
+            ClienteDropList.SelectedValue = listas.ClienteId.ToString();
+            NombreListaTextBox.Text = listas.NombreLista.ToString();
             CantidadTotalTextBox.Text = listas.CantidadTotal.ToString();
             SubTotalTextBox.Text = listas.SubTotalLista.ToString();
             ItebisTotalTextBox.Text = listas.ItebisTotalLista.ToString();
@@ -87,9 +92,6 @@ namespace BuyList.Registros
             ProductoDropDownList.DataTextField = "Descripcion";
             ProductoDropDownList.DataBind();
 
-            CantidadTextBox.Text = categoriaId.ToString();
-
-
         }
         public void LLenarCategoria()
         {
@@ -99,6 +101,12 @@ namespace BuyList.Registros
             CategoriaDropDownList.DataTextField = "Nombre";
             CategoriaDropDownList.DataBind();
 
+
+            RepositorioBase<Clientes> clientes = new RepositorioBase<Clientes>(new Contexto());
+            ClienteDropList.DataSource = clientes.GetList(a => true);
+            ClienteDropList.DataValueField = "ClienteId";
+            ClienteDropList.DataTextField = "Nombre";
+            ClienteDropList.DataBind();
         }
 
         public void CalcularImporte()
@@ -154,10 +162,7 @@ namespace BuyList.Registros
             {
                 ItebisTextBox.Text = "0.10";
                 PrecioTextBox.Text = item.Precio.ToString();
-
             }
-
-
         }
         public void LLenarValor()
         {
@@ -298,7 +303,7 @@ namespace BuyList.Registros
 
             Listas lista = new Listas();
             lista = (Listas)base.ViewState["Listas"];
-            lista.AgregarLista(0, ProductoDropDownList.Text, Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text), Utils.ToDecimal(ItebisTextBox.Text));
+            lista.AgregarLista(0,Utils.ToInt(ListaIdTextBox.Text),Utils.ToInt(ClienteDropList.SelectedValue), ProductoDropDownList.Text, Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text), Utils.ToDecimal(ItebisTextBox.Text));
             ViewState["Listas"] = lista;
             this.BindGrid();
             LLenarValor();

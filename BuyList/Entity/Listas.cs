@@ -12,6 +12,7 @@ namespace Entity
     {
         [Key]
         public int ListaId { get; set; }
+        public int ClienteId { get; set; }
         public string NombreLista { get; set; }
         public decimal SubTotalLista { get; set; }
         public decimal ItebisTotalLista { get; set; }
@@ -22,6 +23,7 @@ namespace Entity
          public Listas()
         {
             ListaId = 0;
+            ClienteId = 0;
             NombreLista = string.Empty;
             SubTotalLista = 0;
             ItebisTotalLista = 0;
@@ -31,9 +33,10 @@ namespace Entity
 
         }
 
-        public Listas(int listaId, string nombreLista, decimal subTotalLista, decimal itebisTotalLista, decimal totalLista, int cantidadTotal)
+        public Listas(int listaId, int clienteId, string nombreLista, decimal subTotalLista, decimal itebisTotalLista, decimal totalLista, int cantidadTotal)
         {
             ListaId = listaId;
+            ClienteId = clienteId;
             NombreLista = nombreLista;
             SubTotalLista = subTotalLista;
             ItebisTotalLista = itebisTotalLista;
@@ -42,9 +45,9 @@ namespace Entity
             this.DetalleListas = new List<DetalleListas>();
 
         }
-        public void AgregarLista(int detalleListaId, string producto, int cantidad, decimal precio, decimal importe, decimal itebis)
+        public void AgregarLista(int detalleListaId,int listaid, int clienteId, string producto, int cantidad, decimal precio, decimal importe, decimal itebis)
         {
-           this.DetalleListas.Add(new DetalleListas(detalleListaId,producto,cantidad,precio,importe, itebis));
+           this.DetalleListas.Add(new DetalleListas(detalleListaId,listaid,clienteId, producto,cantidad,precio,importe, itebis));
         }
     }
 }

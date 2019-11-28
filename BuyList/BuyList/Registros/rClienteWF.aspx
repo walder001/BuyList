@@ -6,23 +6,11 @@
         <ul class="nav justify-content-center bg-success">
             <li>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
-                <h5 class="text-light">Registro Usuario</h5>
+                <h5 class="text-light">Registro Cliente</h5>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
             </li>
         </ul>
         <br />
-        <div class="form-row">
-            <div class="col col-4 offset-8">
-                <label for="Fecha"><strong>Fecha</strong></label>
-                <asp:TextBox ID="FechaTextBox" CssClass="form-control" TextMode="Date" runat="server"/>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" MaxLength="200"
-                    ControlToValidate="FechaTextBox"
-                    ErrorMessage="Campo Fecha obligatorio" ForeColor="black"
-                    Display="Dynamic" SetFocusOnError="True"
-                    ToolTip="Campo Fecha obligatorio" ValidationGroup="Guardar">Por favor llenar el campo Fecha
-                </asp:RequiredFieldValidator>
-           </div>
-        </div>
 
         <div class="form-row">
             <div class="col">

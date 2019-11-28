@@ -114,6 +114,7 @@
     <Content Include="Imagenes\la.jpg" />
     <Content Include="Imagenes\ny.jpg" />
     <Content Include="Login\Login.aspx" />
+    <Content Include="Login\Usuario.aspx" />
     <Content Include="Registros\CheckList.aspx" />
     <Content Include="Registros\Lista.aspx" />
     <Content Include="Registros\Prueba.aspx" />
@@ -154,6 +155,9 @@
     <Content Include="DbBuyListDataSet.xss">
       <DependentUpon>DbBuyListDataSet.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\BuyListProject - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BuyListProject - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BuyListProject - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -242,6 +246,13 @@
     </Compile>
     <Compile Include="Login\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registros\CheckList.aspx.cs">
@@ -341,11 +352,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reportes\ReporteCategoria.rdlc" />
-    <EmbeddedResource Include="Reportes\ReporteCliente.rdlc" />
-    <EmbeddedResource Include="Reportes\ReporteLista.rdlc" />
-    <EmbeddedResource Include="Reportes\ReporteProducto.rdlc" />
-    <EmbeddedResource Include="Reportes\ReposrteCiente.rdlc" />
+    <Content Include="Reportes\CategoriaReporte.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\PagoReport.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ReporteCliente.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ReporteLista.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ReporteProducto.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ReposrteCiente.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -24,9 +24,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <p>
-   <input type="text" class="redondeado" value="input con borde redondeado">
- </p>
+    <br />
+    <br />
 
 
     <div class="container">

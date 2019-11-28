@@ -24,16 +24,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+    <br />
     <div class="container">
         <ul class="nav justify-content-center bg-success">
             <li>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
 
-                <h5 class="text-light">Consulta Producto</h5>
+                <h5 class="text-light">Consulta Lista</h5>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
 
             </li>
         </ul>
+        <br />
         <div class="form-group row">
             <label class="col" id="labelfiltro"><strong>Filtro</strong></label>
             <asp:DropDownList ID="DropDromFiltro" runat="server" CssClass="col-lg-3 form-control">
@@ -50,7 +52,7 @@
     </div>
 
     <div class="table-responsive container">
-        <asp:GridView ID="ListaGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="ListaGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None" CssClass="col-12">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:HyperLinkField ControlStyle-ForeColor="#0094ff"
@@ -72,19 +74,18 @@
         </div>
         <!-- Modal para mi Reporte.// -->
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" style="max-width: 600px!important; min-width: 300px!important">
+            <div class="modal-dialog modal-sm" style="max-width: 850px!important; min-width: 500px!important">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">REPORTE CATEGORIA</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" OnClick="Imprimir_Click">
-
+                        <h5 class="modal-title" id="exampleModalLabel">REPORTE CLIENTE</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <asp:ScriptManager runat="server" />
                         <%--Viewer--%>
-                        <rsweb:reportviewer ID="MyReportViewer" runat="server" ProcessingMode="Remote" Height="400px" Width="500px">
+                        <rsweb:reportviewer ID="MyReportViewer" runat="server" ProcessingMode="Remote" Height="500px" Width="800px">
                                 <ServerReport ReportPath="" ReportServerUrl="" />
                         </rsweb:reportviewer>
                     </div>

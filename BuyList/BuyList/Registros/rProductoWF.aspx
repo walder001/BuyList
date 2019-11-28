@@ -23,7 +23,6 @@
              </div>
         </div>
  
-
         <div class="form-row">
             <div class="col">
              <label for="Categoria"><strong>Categoria</strong></label>

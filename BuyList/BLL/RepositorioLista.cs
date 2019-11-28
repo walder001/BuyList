@@ -47,7 +47,7 @@ namespace BLL
                 {
                     foreach (var item in listas.DetalleListas)
                     {
-                        //_contexto.Clientes.Find().CantidaLista -= item.MontoPagado;
+                        _contexto.Clientes.Find(item.ClienteId).CantidaArticulo += item.Cantidad;
                     }
                 }
                 paso = _contexto.SaveChanges() > 0;
@@ -68,7 +68,7 @@ namespace BLL
             Listas evaluaciones = _contexto.Listas.Find(id);
             foreach (var item in evaluaciones.DetalleListas)
             {
-                //_contexto.Clientes.Find(item.EsudianteId).PuntosPerdidos -= item.Perdido;
+                _contexto.Clientes.Find(item.ClienteId).CantidaArticulo -= item.Cantidad;
             }
             _contexto.Listas.Remove(evaluaciones);
 
@@ -91,7 +91,7 @@ namespace BLL
                 {
                     if (!lista.DetalleListas.Exists(e => e.DetalleListaId == item.DetalleListaId))
                     {
-                        //contexto.Clientes.Find().Balance += item.MontoPagado;
+                        contexto.Clientes.Find().CantidaArticulo += item.Cantidad;
                         contexto.Entry(item).State = System.Data.Entity.EntityState.Deleted;
                         paso = true;
                     }
@@ -111,7 +111,7 @@ namespace BLL
                         estado = EntityState.Added;
                     }
                     contextoLista.Entry(item).State = estado;
-                    //contextoLista.Clientes.Find(item.ClienteId).Balance -= item.MontoPagado;
+                    contextoLista.Clientes.Find(item.ClienteId).CantidaArticulo -= item.Cantidad;
 
                 }
                 contextoLista.Entry(lista).State = EntityState.Modified;

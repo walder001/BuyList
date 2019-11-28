@@ -24,16 +24,30 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+    <br />
     <div class="container">
         <ul class="nav justify-content-center bg-success">
             <li>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
 
-                <h5 class="text-light">Consulta Producto</h5>
+                <h5 class="text-light">Consulta Cliente</h5>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
 
             </li>
         </ul>
+           <div class="col">
+                <asp:CheckBox ID="checkbox" runat="server" />
+            </div>
+        <div class="row container">
+            <div class="col col-6">
+                <asp:TextBox ID="FechaIncio" CssClass="form-control" TextMode="Date" runat="server" />
+            </div>
+
+            <div class="col col-6">
+                <asp:TextBox ID="FechaFin" CssClass="form-control" TextMode="Date" runat="server" />
+            </div>
+        </div>
+        <br />
         <div class="form-group row">
             <label class="col" id="labelfiltro"><strong>Filtro</strong></label>
             <asp:DropDownList ID="DropDromFiltro" runat="server" CssClass="col-lg-3 form-control">
@@ -46,14 +60,16 @@
             </asp:DropDownList>
             <label class="col"><strong>Contenido </strong></label>
             <asp:TextBox ID="TextBoxCriterio" runat="server" CssClass="col-lg-5 form-control" />
-            <asp:Button Text="Buscar" runat="server" CssClass=" btn btn-primary col" OnClick="Buscar_Click" />
+            <asp:LinkButton ID="Buscar" runat="server" CssClass="col" OnClick="Buscar_Click"><i class="fas fa-search fa-2x"></i></asp:LinkButton>
+
         </div>
         <div>
         </div>
     </div>
 
     <div class="table-responsive container">
-        <asp:GridView ID="ClienteGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None">
+        <div class="center">
+           <asp:GridView ID="ClienteGridView" runat="server" class="table table-condensed  table-responsive" CellPadding="6" ForeColor="#333333" GridLines="None" CssClass="col-12">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:HyperLinkField ControlStyle-ForeColor="#0094ff"
@@ -65,6 +81,8 @@
             <HeaderStyle BackColor="Green" Font-Bold="true" ForeColor="black" />
             <RowStyle BackColor="#EFF3FB" />
         </asp:GridView>
+        </div>
+
         <%--Imprimir--%>
         <div class="card-footer">
             <div class="justify-content-start">
@@ -73,12 +91,12 @@
                 </div>
             </div>
         </div>
-        <!-- Modal para mi Reporte.// -->
+     <!-- Modal para mi Reporte.// -->
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" style="max-width: 600px!important; min-width: 300px!important">
+            <div class="modal-dialog modal-sm" style="max-width: 750px!important; min-width: 500px!important">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">REPORTE CLIENTES</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">REPORTE </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -86,7 +104,7 @@
                     <div class="modal-body">
                         <asp:ScriptManager runat="server" />
                         <%--Viewer--%>
-                        <rsweb:reportviewer ID="MyReportViewer" runat="server" ProcessingMode="Remote" Height="400px" Width="500px">
+                        <rsweb:reportviewer ID="MyReportViewer" runat="server" ProcessingMode="Remote" Height="500px" Width="700px">
                                 <ServerReport ReportPath="" ReportServerUrl="" />
                         </rsweb:reportviewer>
                     </div>

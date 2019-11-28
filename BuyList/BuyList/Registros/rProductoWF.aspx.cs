@@ -45,13 +45,23 @@ namespace BuyList.Registros
         }
         public void LLenaCampo(Productos productos)
         {
+            RepositorioBase<Categorias> repositorio = new RepositorioBase<Categorias>(new Contexto());
+
             ProductoIdTextBox.Text = productos.ProductoId.ToString();
-            CategoriaDropDownList.SelectedValue = productos.CategoriaId.ToString();
             DescripcionTextBox.Text = productos.Descripcion.ToString();
             CantidadTextBox.Text = productos.Cantidad.ToString();
             PrecioTextBox.Text = Convert.ToString(productos.Precio);
             CostoTextBox.Text = productos.Costo.ToString();
             GananciaTextBox.Text = productos.Ganancia.ToString();
+            if (repositorio.Buscar(productos.CategoriaId) != null)
+            {
+                CategoriaDropDownList.SelectedValue = productos.CategoriaId.ToString();
+
+            }
+            else
+            {
+                Utils.ShowToastr(this, "Categoria no existente", "Error", "error");
+            }
         }
 
         protected bool Validar()

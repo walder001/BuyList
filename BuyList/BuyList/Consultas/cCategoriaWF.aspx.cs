@@ -18,6 +18,8 @@ namespace BuyList.Consultas
         {
             if (!Page.IsPostBack)
             {
+               int index = ToInt(DropDromFiltro.SelectedValue);
+                LlenaReport(index, TextBoxCriterio.Text);
             }
         }
         private int ToInt(object valor)
@@ -32,9 +34,9 @@ namespace BuyList.Consultas
 
             MyReportViewer.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Local;
             MyReportViewer.Reset();
-            MyReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ReporteCategoria.rdlc");
+            MyReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\CategoriaReporte.rdlc");
             MyReportViewer.LocalReport.DataSources.Clear();
-            MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Categoria",Funcionalidades.FitrarCategoria(index,criterio)));
+            MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("ReportCategoria",Funcionalidades.FitrarCategoria(index,criterio)));
             MyReportViewer.LocalReport.Refresh();
 
         }
@@ -47,11 +49,5 @@ namespace BuyList.Consultas
             CategoriaGridView.DataBind();
         }
 
-        protected void Imprimir_Click(object sender, EventArgs e)
-        {
-            int id = Utils.ToInt(TextBoxCriterio.Text);
-            int index = ToInt(DropDromFiltro.SelectedIndex);
-            LlenaReport(index,TextBoxCriterio.Text);
-        }
     }
 }

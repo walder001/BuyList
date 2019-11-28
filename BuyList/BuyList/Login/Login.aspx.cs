@@ -35,6 +35,7 @@ namespace BuyList.Login
             else
             {
                 Utils.ShowToastr(this, "Usuario no enciatrado", "Error", "error");
+                FormsAuthentication.RedirectFromLoginPage(Usuario.Usuario, true);
 
             }
         }

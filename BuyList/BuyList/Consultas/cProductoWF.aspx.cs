@@ -18,11 +18,12 @@ namespace BuyList.Consultas
         {
             if (!Page.IsPostBack)
             {
-                LlenaReport();
+                int index = ToInt(DropDrom.SelectedItem);
+                LlenaReport(index, TextBoxCriterio.Text);
             }
 
         }
-        public void LlenaReport()
+        public void LlenaReport(int index, string criterio)
         {
             RepositorioBase<Categorias> repositorio = new RepositorioBase<Categorias>(new Contexto());
 
@@ -30,7 +31,7 @@ namespace BuyList.Consultas
             MyReportViewer.Reset();
             MyReportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Reportes\ReporteProducto.rdlc");
             MyReportViewer.LocalReport.DataSources.Clear();
-            //MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Producto", Funcionalidades.FReporteProducto()));
+            MyReportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Producto", Funcionalidades.FiltrarProducto(index,criterio)));
             MyReportViewer.LocalReport.Refresh();
 
         }
@@ -51,13 +52,13 @@ namespace BuyList.Consultas
             DateTime desde = Utils.ToDateTime(FechaIncio.Text);
             DateTime hasta = Utils.ToDateTime(FechaFin.Text);
 
-            DatosGridView.DataSource = Funcionalidades.FiltrarProducto(id, TextBoxCriterio.Text, desde, hasta);
+            DatosGridView.DataSource = Funcionalidades.FiltrarProducto(id, TextBoxCriterio.Text);
             DatosGridView.DataBind();
+            LlenaReport(index, TextBoxCriterio.Text);
         }
 
         protected void Imprimir_Click(object sender, EventArgs e)
         {
-            LlenaReport();
 
         }
     }

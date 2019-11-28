@@ -57,9 +57,7 @@ namespace BuyList.Consultas
 
         protected void Imprimir_Click(object sender, EventArgs e)
         {
-            int id = Utils.ToInt(TextBoxCriterio.Text);
-            int index = ToInt(DropDromFiltro.SelectedIndex);
-            LlenaReport(index, TextBoxCriterio.Text);
+
         }
     }
 }
